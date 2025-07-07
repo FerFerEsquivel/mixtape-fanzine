@@ -71,6 +71,7 @@ body {
 }
 .nota-bienvenida {
   font-family: 'Cooper', Arial, sans-serif;
+  font-style: italic;
   font-size: 1.1rem;
   color: #9b5348;
   margin-bottom: 2.5rem;
