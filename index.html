@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Chicas del Fin del Mundo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Pantalla de bienvenida -->
+  <div id="bienvenida" class="bienvenida">
+    <h1 class="titulo-bienvenida">Chicas del Fin del Mundo</h1>
+    <p class="nota-bienvenida">para las que han estado siempre conmigo, mis almas gemelas</p>
+    <img 
+      src="https://w7.pngwing.com/pngs/764/267/png-transparent-purple-arrow-arrow-purple-arrow-arrow-hand-drawing.png"
+      alt="Continuar"
+      class="flecha-bienvenida"
+      id="flecha-bienvenida"
+    />
+  </div>
+
+  <!-- El resto de tu sistema -->
+  <div id="contenido" style="display:none;">
+    <div class="volver-inicio">
+      <a href="#" id="btn-volver-inicio">adios!</a>
+    </div>
+    <div class="art-container">
+      <img id="art" src="images/1.jpg" alt="Imagen de la canción">
+    </div>
+    <div class="audio-player" id="audio-player">
+      <div class="timeline">
+        <div class="progress"></div>
+      </div>
+      <div class="controls">
+        <button id="prev" class="prev-btn" title="Anterior">&#9198;</button>
+        <div class="play-container">
+          <div class="toggle-play play" id="play-pause"></div>
+        </div>
+        <div class="time">
+          <div class="current">0:00</div>
+          <div class="divider">/</div>
+          <div class="length">0:00</div>
+        </div>
+        <div class="name" id="track-name">Canción 1</div>
+        <div class="volume-container">
+          <div class="volume-button">
+            <div class="volume icono-volumeMedium"></div>
+          </div>
+          <div class="volume-slider">
+            <div class="volume-percentage"></div>
+          </div>
+        </div>
+        <button id="next" class="next-btn" title="Siguiente">&#9197;</button>
+      </div>
+      <audio id="player" preload="metadata"></audio>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Mostrar contenido y ocultar bienvenida con animación
+    document.getElementById('flecha-bienvenida').onclick = function() {
+      const bienvenida = document.getElementById('bienvenida');
+      bienvenida.classList.add('fade-out');
+      bienvenida.addEventListener('transitionend', function handler() {
+        bienvenida.style.display = 'none';
+        document.getElementById('contenido').style.display = 'block';
+        bienvenida.classList.remove('fade-out');
+        bienvenida.removeEventListener('transitionend', handler);
+      });
+    };
+
+    // Volver a la pantalla principal con "adios!"
+    document.getElementById('btn-volver-inicio').onclick = function(e) {
+      e.preventDefault();
+      const bienvenida = document.getElementById('bienvenida');
+      const contenido = document.getElementById('contenido');
+      contenido.style.display = 'none';
+      bienvenida.style.opacity = 0;
+      bienvenida.style.display = 'flex';
+      // Forzar reflujo para reiniciar la animación
+      void bienvenida.offsetWidth;
+      bienvenida.style.transition = 'opacity 0.7s cubic-bezier(0.42,0,0.58,1)';
+      bienvenida.style.opacity = 1;
+    };
+  </script>
+</body>
+</html>

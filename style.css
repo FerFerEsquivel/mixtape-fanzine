@@ -1,0 +1,305 @@
+@font-face { font-family: 'Cooper'; src: url('fonts/Cooper-Regular.woff2') format('woff2'); }
+@font-face { font-family: 'Caveat'; src: url('fonts/Caveat-Bold.woff2') format('woff2'); font-weight: bold; }
+
+body {
+  margin: 0;
+  background-color: #b5d1cc;
+  font-family: 'Cooper', Arial, sans-serif;
+  color: #6f0043;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Bienvenida */
+.bienvenida {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0; left: 0;
+  background: #b5d1cc;
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 0.7s cubic-bezier(0.42,0,0.58,1);
+}
+.bienvenida.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+.titulo-bienvenida {
+  font-family: 'Cooper', Arial, sans-serif;
+  color: #6f0043;
+  font-size: 2.5rem;
+  margin-bottom: 1.2rem;
+  margin-top: 0;
+  text-align: center;
+  letter-spacing: 1.5px;
+}
+.nota-bienvenida {
+  font-family: 'Cooper', Arial, sans-serif;
+  font-size: 1.1rem;
+  color: #9b5348;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  max-width: 350px;
+}
+.flecha-bienvenida {
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform .2s;
+  filter: drop-shadow(2px 2px 8px #6f004344);
+}
+.flecha-bienvenida:hover {
+  transform: translateY(8px) scale(1.12) rotate(6deg);
+}
+
+/* Botón "adios!" */
+.volver-inicio {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0.5rem;
+}
+.volver-inicio a {
+  font-family: 'Cooper', Arial, sans-serif;
+  color: #6f0043;
+  background: #b5d1cc;
+  border: none;
+  padding: 5px 18px;
+  border-radius: 14px;
+  font-size: 1.2em;
+  text-decoration: none;
+  box-shadow: 1px 1px 6px #6f004366;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+.volver-inicio a:hover {
+  background: #6f0043;
+  color: #ffb3f0;
+  transform: scale(1.08);
+}
+
+/* Art Container */
+.art-container {
+  border: 3px dashed #6f0043;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+  box-shadow: 4px 4px 0px #6f004344;
+}
+.art-container img {
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 10px;
+  border: 3px solid #ffb3f0;
+}
+
+/* Audio Player sin marco ni fondo */
+.audio-player {
+  height: 44px;
+  width: 350px;
+  background: transparent;
+  box-shadow: none;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+  color: #6f0043;
+  font-size: 1em;
+  overflow: visible;
+  display: grid;
+  grid-template-rows: 4px auto;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 0;
+  letter-spacing: 0.5px;
+}
+
+.audio-player .timeline {
+  background: #fff;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  box-shadow: none;
+  height: 4px;
+  margin-bottom: 2px;
+  border-radius: 2px;
+}
+.audio-player .timeline .progress {
+  background: #9b5348;
+  width: 0%;
+  height: 100%;
+  transition: 0.25s;
+  border-radius: 2px;
+}
+.audio-player .controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 1em;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+  background: none;
+}
+.audio-player .controls > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+}
+.audio-player .controls .play-container {
+  width: 30px;
+  justify-content: flex-end;
+}
+.audio-player .controls .toggle-play.play {
+  cursor: pointer;
+  position: relative;
+  left: 0;
+  height: 0;
+  width: 0;
+  border: 7px solid #0000;
+  border-left: 13px solid #6f0043;
+  margin-left: 3px;
+}
+.audio-player .controls .toggle-play.pause {
+  height: 16px;
+  width: 16px;
+  cursor: pointer;
+  position: relative;
+}
+.audio-player .controls .toggle-play.pause:before,
+.audio-player .controls .toggle-play.pause:after {
+  position: absolute;
+  top: 0;
+  background: #6f0043;
+  content: "";
+  height: 16px;
+  width: 4px;
+  border-radius: 2px;
+}
+.audio-player .controls .toggle-play.pause:before {
+  left: 1px;
+}
+.audio-player .controls .toggle-play.pause:after {
+  right: 1px;
+}
+.audio-player .controls .toggle-play:hover {
+  transform: scale(1.1);
+}
+.audio-player .controls .time {
+  min-width: 58px;
+  margin: 0 2px;
+  color: #6f0043;
+  font-size: 0.85em;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+}
+.audio-player .controls .time > * {
+  padding: 1px;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+}
+
+/* Track name */
+.audio-player .controls .name {
+  min-width: 70px;
+  max-width: 98px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0 3px;
+  color: #6f0043;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-size: 1em;
+  letter-spacing: 0.5px;
+  font-weight: bold;
+}
+.prev-btn, .next-btn {
+  background: none;
+  border: none;
+  color: #6f0043;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+}
+.prev-btn:hover, .next-btn:hover {
+  color: #ffb3f0;
+  background: #6f0043;
+}
+
+/* Volumen */
+.audio-player .controls .volume-container {
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  margin-left: 3px;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+}
+.audio-player .controls .volume-container .volume-button {
+  height: 18px;
+  display: flex;
+  align-items: center;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+}
+.audio-player .controls .volume-container .volume-button .volume {
+  width: 14px; height: 14px;
+  background: url('data:image/svg+xml;utf8,<svg fill="%236f0043" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 10v4h4l5 5V5l-5 5H3zm13.5 2c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.74 2.5-2.26 2.5-4.02z"/></svg>') no-repeat center center;
+  background-size: contain;
+}
+.audio-player .controls .volume-container .volume-slider {
+  position: absolute;
+  top: 12px;
+  left: -3px;
+  z-index: -1;
+  width: 0;
+  height: 11px;
+  background: #fff;
+  box-shadow: 0 0 8px #9b534833;
+  transition: 0.25s;
+  border-radius: 5px;
+  overflow: hidden;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+}
+.audio-player .controls .volume-container .volume-slider .volume-percentage {
+  background: #6f0043;
+  height: 100%;
+  width: 75%;
+  border-radius: 5px;
+  font-family: 'Caveat', cursive, Arial, sans-serif;
+  font-weight: bold;
+}
+.audio-player .controls .volume-container:hover .volume-slider {
+  left: -70px;
+  width: 68px;
+}
+
+@media (max-width: 500px) {
+  .audio-player {
+    width: 98vw;
+    min-width: 200px;
+    font-size: 0.92em;
+  }
+  .art-container img {
+    max-width: 90vw;
+    max-height: 50vw;
+  }
+  .bienvenida .titulo-bienvenida { font-size: 2rem; }
+}
