@@ -62,8 +62,9 @@ body {
 }
 .titulo-bienvenida {
   font-family: 'Cooper', Arial, sans-serif;
+  font-style: italic;
   color: #6f0043;
-  font-size: 2.5rem;
+  font-size: 6.5rem;
   margin-bottom: 1.2rem;
   margin-top: 0;
   text-align: center;
